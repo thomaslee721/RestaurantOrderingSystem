@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Restaurant Ordering System - Login</title>
+</head>
+<body>
+    <h2>Welcome to the Restaurant Ordering System!</h2>
+    
+    <!-- Login form for entering table number -->
+    <form th:action="@{/login}" method="post">
+        <label for="tableNumber">Please enter your table number:</label>
+        <input type="text" id="tableNumber" name="tableNumber" required>
+        <button type="submit">Login</button>
+    </form>
+    
+    <!-- Error message display if table number is invalid -->
+    <p th:if="${error}" th:text="${error}" style="color: red;"></p>
+</body>
+</html>

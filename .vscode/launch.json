@@ -1,0 +1,28 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "java",
+        "name": "RestaurantOrderingSystemApplication",
+        "request": "launch",
+        "mainClass": "com.example.RestaurantOrderingSystem.RestaurantOrderingSystemApplication",
+        "projectName": "RestaurantOrderingSystem"
+      },
+      {
+        "type": "java",
+        "name": "Spring Boot",
+        "request": "launch",
+        "mainClass": "com.example.RestaurantOrderingSystemApplication",
+        "projectName": "RestaurantOrderingSystem",
+        "args": "",
+        "env": {},
+        "cwd": "${workspaceFolder}",
+        "stopOnEntry": false,
+        "sourcePaths": [],
+        "vmArgs": "-Dspring.profiles.active=dev",
+        "jdkPath": "/path/to/your/jdk",
+        "console": "internalConsole"
+      }
+    ]
+  }
+  

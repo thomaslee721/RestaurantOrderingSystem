@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h2>Please enter your table number:</h2>
+    <form action="/login" method="post">
+        <label for="tableNumber">Table Number: </label>
+        <input type="text" id="tableNumber" name="tableNumber" required />
+        <button type="submit">Login</button>
+    </form>
+</body>
+</html>
