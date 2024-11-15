@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Page</title>
+    <style>
+        /* Style adjustments for spacing */
+        .panel {
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            width: 45%;
+            float: left;
+        }
+        .cart-item {
+            margin-bottom: 10px;
+        }
+        .amount-controls {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .amount-display {
+            width: 30px;
+            text-align: center;
+        }
+        .summary {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .place-order {
+            margin-top: 15px;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+    <script>
+        // Initialize item amounts
+        const cart = {};
+
+        function updateAmount(itemId, itemName, price, change) {
+            const amountDisplay = document.getElementById('amount-' + itemId);
+            let currentAmount = parseInt(amountDisplay.textContent);
+            currentAmount = Math.max(0, currentAmount + change); // Ensure amount >= 0
+            amountDisplay.textContent = currentAmount;
+
+            // Update cart data
+            if (currentAmount > 0) {
+                cart[itemId] = { name: itemName, amount: currentAmount, price: price };
+            } else {
+                delete cart[itemId]; // Remove item from cart if amount is 0
+            }
+            renderCart();
+        }
+
+        function renderCart() {
+            const cartPanel = document.getElementById('cart-items');
+            cartPanel.innerHTML = '';
+
+            let total = 0;
+            for (const item in cart) {
+                const itemTotal = cart[item].amount * cart[item].price;
+                total += itemTotal;
+
+                cartPanel.innerHTML += `
+                    <div class="cart-item">
+                        ${cart[item].name} - ${cart[item].amount} x $${cart[item].price.toFixed(2)} = $${itemTotal.toFixed(2)}
+                    </div>
+                `;
+            }
+
+            const tax = total * 0.1;
+            const totalWithTax = total + tax;
+            document.getElementById('total').textContent = `Total: $${total.toFixed(2)}`;
+            document.getElementById('tax').textContent = `Tax (10%): $${tax.toFixed(2)}`;
+            document.getElementById('total-with-tax').textContent = `Total with Tax: $${totalWithTax.toFixed(2)}`;
+        }
+
+        function placeOrder() {
+            alert("Your order has been created!");
+            for (const item in cart) {
+                cart[item].amount = 0;
+            }
+            renderCart();
+            document.querySelectorAll('.amount-display').forEach(display => display.textContent = '0');
+        }
+    </script>
+</head>
+<body>
+    <h1>Order Page</h1>
+    <p>Welcome to your table's ordering page! Here is the menu and ordering functionality.</p>
+
+    <!-- Left Panel: Menu Items -->
+    <div class="panel">
+        <h2>Order Items</h2>
+        <div class="menu-item">
+            <span>Item 1 - $6.30</span>
+            <div class="amount-controls">
+                <button onclick="updateAmount('Item1', 'Item 1', 6.30, -1)">-</button>
+                <span id="amount-Item1" class="amount-display">0</span>
+                <button onclick="updateAmount('Item1', 'Item 1', 6.30, 1)">+</button>
+            </div>
+        </div>
+        <div class="menu-item">
+            <span>Item 2 - $4.50</span>
+            <div class="amount-controls">
+                <button onclick="updateAmount('Item2', 'Item 2', 4.50, -1)">-</button>
+                <span id="amount-Item2" class="amount-display">0</span>
+                <button onclick="updateAmount('Item2', 'Item 2', 4.50, 1)">+</button>
+            </div>
+        </div>
+        <!-- Add more items similarly -->
+    </div>
+
+    <!-- Right Panel: Cart and Summary -->
+    <div class="panel">
+        <h2>Your Cart</h2>
+        <div id="cart-items"></div>
+        <div id="total" class="summary">Total: $0.00</div>
+        <div id="tax" class="summary">Tax (10%): $0.00</div>
+        <div id="total-with-tax" class="summary">Total with Tax: $0.00</div>
+        <button class="place-order" onclick="placeOrder()">Place Order</button>
+    </div>
+
+    <!-- Logout Button -->
+    <form th:action="@{/logout}" method="post" style="clear:both; margin-top:20px;">
+        <button type="submit">Logout</button>
+    </form>
+</body>
+</html>
