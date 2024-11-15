@@ -1,0 +1,125 @@
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #333; /* Dark background for header */
+        color: #ddd; /* Light text color */
+    }
+
+    h2 {
+        color: #eaeaea;
+    }
+
+    form {
+        background-color: #333;
+        color: #ddd;
+    }
+
+    input, button {
+        background-color: #555;
+        color: white;
+        border: 1px solid #444;
+    }
+
+    button {
+        background-color: #007bff;
+    }
+
+    /* Link styles in dark mode */
+    a {
+        color: #66ccff; /* Light blue for good contrast */
+    }
+
+    a:visited {
+        color: #9999cc; /* Adjusted purple with enough contrast */
+    }
+
+    a:hover {
+        color: #80d4ff; /* Slightly brighter blue on hover */
+    }
+
+    /* Input and Button Styling */
+    input, button {
+        padding: 15px; /* Increase padding for larger size */
+        font-size: 18px; /* Increase font size */
+        margin-top: 10px;
+        border: 1px solid #ccc;
+    }
+
+    /* Button Styling */
+    button {
+        cursor: pointer;
+    }    
+
+    /* Larger Heading Styles */
+    h1 {
+        font-size: 2.5em; /* Adjust as needed */
+        margin-bottom: 0.5em;
+    }
+
+    h2 {
+        font-size: 2em; /* Adjust as needed */
+        margin-bottom: 0.5em;
+    }
+
+    h3 {
+        font-size: 1.75em; /* Adjust as needed */
+        margin-bottom: 0.5em;
+    }
+
+    /* Larger Label Styles */
+    label {
+        font-size: 1.25em; /* Adjust as needed */
+        margin-bottom: 0.5em;
+        display: inline-block; /* Ensures spacing applies */
+    }
+
+    /* Larger Paragraph Styles */
+    p {
+        font-size: 1.5em; /* Adjust as needed */
+        margin-bottom: 1em;
+    }
+
+    /* Larger List Items and Links */
+    ul {
+        font-size: 1.25em; /* Adjust as needed */
+        padding-left: 20px; /* Optional, to add indentation */
+    }
+
+    ul li {
+        margin-bottom: 10px; /* Adds space between items */
+    }
+
+    ul li a {
+        font-size: 1.25em; /* Adjust as needed */
+        text-decoration: none; /* Optional: removes underline */
+        color: #66ccff; /* Light blue for links */
+    }
+
+    ul li a:hover {
+        color: #80d4ff; /* Brighter blue on hover */
+    }
+
+    /* Larger Table Styles */
+    table {
+        width: 100%; /* Ensure table takes up full width */
+        font-size: 1.25em; /* Adjust as needed */
+        border-collapse: collapse; /* Removes extra spacing between cells */
+    }
+
+    th, td {
+        padding: 15px; /* Adds padding inside table cells */
+        text-align: left; /* Align text to the left */
+        border: 1px solid #444; /* Darker border for better contrast */
+    }
+
+    /* Table Header Styles */
+    th {
+        background-color: #444; /* Dark background for header */
+        color: #ddd; /* Light text for contrast */
+    }
+
+    /* Table Row Hover Styles */
+    tbody tr:hover {
+        background-color: #555; /* Slightly lighter dark background on hover */
+    }
+}

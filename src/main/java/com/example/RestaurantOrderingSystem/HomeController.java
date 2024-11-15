@@ -1,5 +1,6 @@
 package com.example.RestaurantOrderingSystem;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,16 +8,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.List;
-
 @Controller
 public class HomeController {
 
-    // Example Menu Item
-    private List<MenuItem> getDefaultMenuItems() {
-        MenuItem exampleItem = new MenuItem(1L, "Example Dish", "This is a delicious example dish.", 9.99);
-        return List.of(exampleItem); // Return a list containing the example item
-    }
+    @Autowired
+    private MenuService menuService; // Inject MenuService
 
     @GetMapping("/")
     public String home() {
@@ -47,20 +43,20 @@ public class HomeController {
 
     @GetMapping("/admin")
     public String admin(Model model) {
-        model.addAttribute("menuItems", getDefaultMenuItems()); // Pass the menu items to the admin page
+        model.addAttribute("menuItems", menuService.getMenuItems()); // Get menu items from MenuService
         return "admin"; // Redirects to admin page
     }
 
     @GetMapping("/order")
     public String order(@RequestParam("tableNumber") int tableNumber, Model model) {
         model.addAttribute("tableNumber", tableNumber);
-        model.addAttribute("menuItems", getDefaultMenuItems()); // Pass the menu items to the order page
+        model.addAttribute("menuItems", menuService.getMenuItems()); // Get menu items from MenuService
         return "order"; // Redirects to order page for customers
     }
-    
+
     @GetMapping("/viewMenu")
     public String viewMenu(Model model) {
-        model.addAttribute("menuItems", getDefaultMenuItems()); // Pass the menu items to the viewMenu page
+        model.addAttribute("menuItems", menuService.getMenuItems()); // Get menu items from MenuService
         return "viewMenu"; // Thymeleaf template for viewing menu
     }
 }
