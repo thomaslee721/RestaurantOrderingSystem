@@ -1,46 +1,41 @@
 package com.example.RestaurantOrderingSystem;
 
+import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 @Service
 public class MenuService {
-    
-    // Sample data for now (this will be replaced by database calls later)
+
     private List<MenuItem> menuItems = new ArrayList<>();
 
-    // Constructor to initialize with some sample menu items
+    // Default constructor to add example items if menu is empty
     public MenuService() {
-        menuItems.add(new MenuItem(1L, "Burger", "Juicy beef burger", 8.99));
-        menuItems.add(new MenuItem(2L, "Pizza", "Cheese pizza with pepperoni", 12.99));
-        menuItems.add(new MenuItem(3L, "Pasta", "Spaghetti with marinara sauce", 10.99));
+        if (menuItems.isEmpty()) {
+            // Add default example items
+            menuItems.add(new MenuItem(1L, "Pizza", "Delicious cheese pizza", 9.99));
+            menuItems.add(new MenuItem(2L, "Burger", "Juicy beef burger", 7.49));
+            menuItems.add(new MenuItem(3L, "Pasta", "Creamy Alfredo pasta", 8.99));
+        }
     }
 
-    // Get all menu items
+    // Fetch all menu items
     public List<MenuItem> getAllMenuItems() {
         return menuItems;
     }
 
-    // Get a specific menu item by its ID
+    // Fetch a menu item by its ID
     public MenuItem getMenuItemById(Long id) {
-        for (MenuItem item : menuItems) {
-            if (item.getId().equals(id)) {
-                return item;
-            }
-        }
-        return null; // If not found
+        return menuItems.stream()
+                .filter(item -> item.getId().equals(id))
+                .findFirst()
+                .orElse(null);
     }
 
-    // Save or update a menu item (in this case, just modifying the list for now)
+    // Save or update menu item
     public void saveOrUpdateMenuItem(MenuItem menuItem) {
-        for (int i = 0; i < menuItems.size(); i++) {
-            if (menuItems.get(i).getId().equals(menuItem.getId())) {
-                menuItems.set(i, menuItem); // Update existing item
-                return;
-            }
-        }
-        menuItems.add(menuItem); // Add new item if it doesn't exist
+        // If the item already exists, update it; otherwise, add a new one
+        menuItems.removeIf(item -> item.getId().equals(menuItem.getId()));
+        menuItems.add(menuItem);
     }
 }

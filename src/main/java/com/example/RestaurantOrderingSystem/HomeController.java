@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import java.util.List;
+
 
 @Controller
 public class HomeController {
@@ -54,29 +56,19 @@ public class HomeController {
         return "order"; // Redirects to order page for customers
     }
 
-    // View menu page (list of items)
     @GetMapping("/viewMenu")
     public String viewMenu(Model model) {
-        model.addAttribute("menuItems", menuService.getAllMenuItems());
+        // Create an example menu item
+        MenuItem exampleItem = new MenuItem();
+        exampleItem.setId(1L); // Set a default ID
+        exampleItem.setName("Example Dish");
+        exampleItem.setDescription("This is a delicious example dish.");
+        exampleItem.setPrice(9.99);
+    
+        // Add the example item to the model
+        model.addAttribute("menuItems", List.of(exampleItem)); // Wrap it in a list
+    
         return "viewMenu"; // Thymeleaf template for viewing menu
-    }    
-
-    // Edit menu item page
-    @GetMapping("/editMenu/{id}")
-    public String editMenu(@PathVariable Long id, Model model) {
-        MenuItem menuItem = menuService.getMenuItemById(id);
-        if (menuItem != null) {
-            model.addAttribute("menuItem", menuItem);
-            return "editMenu"; // Template for editing menu item
-        }
-        return "redirect:/viewMenu"; // If item not found, redirect to viewMenu
     }
-
-    // Save updated menu item
-    @PostMapping("/editMenu")
-    public String saveMenuItem(MenuItem menuItem) {
-        menuService.saveOrUpdateMenuItem(menuItem);
-        return "redirect:/viewMenu"; // Redirect back to the view menu page after saving
-    }
-        
+            
 }

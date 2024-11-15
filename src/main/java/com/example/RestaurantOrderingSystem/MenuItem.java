@@ -1,12 +1,16 @@
 package com.example.RestaurantOrderingSystem;
 
 public class MenuItem {
-    private Long id; // Primary key for each menu item
-    private String name; // Name of the menu item
-    private String description; // Description of the menu item
-    private double price; // Price of the menu item
+    private Long id;
+    private String name;
+    private String description;
+    private double price;
 
-    // Constructor
+    // Default constructor
+    public MenuItem() {
+    }
+
+    // Other constructors (if any)
     public MenuItem(Long id, String name, String description, double price) {
         this.id = id;
         this.name = name;
@@ -14,7 +18,7 @@ public class MenuItem {
         this.price = price;
     }
 
-    // Getters and Setters
+    // Getters and setters
     public Long getId() {
         return id;
     }
