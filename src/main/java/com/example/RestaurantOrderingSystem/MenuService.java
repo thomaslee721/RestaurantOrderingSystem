@@ -36,4 +36,10 @@ public class MenuService {
             }
         }
     }
+
+    // Method to save all changes (for example, save to the database if applicable)
+    public void saveMenuChanges() {
+        // Here, you'd implement saving logic, like saving to a database
+        System.out.println("Changes have been saved.");
+    }
 }
