@@ -26,6 +26,7 @@
 
     /* Link styles in dark mode */
     a {
+        font-size: 1.5em; /* Increase the font size */
         color: #66ccff; /* Light blue for good contrast */
     }
 
