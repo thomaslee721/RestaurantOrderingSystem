@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Iterator;
 
 @Service
 public class MenuService {
@@ -33,6 +34,18 @@ public class MenuService {
                 item.setName(name);
                 item.setDescription(description);
                 item.setPrice(price);
+            }
+        }
+    }
+
+    // Method to delete a menu item by ID
+    public void deleteMenuItem(Long id) {
+        Iterator<MenuItem> iterator = menuItems.iterator();
+        while (iterator.hasNext()) {
+            MenuItem item = iterator.next();
+            if (item.getId().equals(id)) {
+                iterator.remove();
+                break;
             }
         }
     }

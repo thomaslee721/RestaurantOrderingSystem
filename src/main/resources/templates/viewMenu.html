@@ -24,7 +24,11 @@
             <td th:text="${item.description}"></td>
             <td th:text="${item.price}"></td>
             <td>
-                <a th:href="@{/editMenu/{id}(id=${item.id})}">Edit</a>
+                <!-- Delete Action -->
+                <form action="/deleteMenuItem" method="post" style="display:inline;">
+                    <input type="hidden" name="id" th:value="${item.id}" />
+                    <button type="submit">Delete</button>
+                </form>
             </td>
         </tr>
     </tbody>
@@ -47,7 +51,7 @@
     </form>
 </div>
 
-<!-- Save Changes Button (could be used to save any changes to the menu items) -->
+<!-- Save Changes Button -->
 <div>
     <form action="/saveMenuChanges" method="post">
         <button type="submit">Save Changes</button>

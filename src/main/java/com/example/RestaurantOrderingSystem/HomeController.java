@@ -68,6 +68,12 @@ public class HomeController {
         return "redirect:/viewMenu"; // Redirect to view the updated menu
     }
 
+    @PostMapping("/deleteMenuItem")
+    public String deleteMenuItem(@RequestParam Long id) {
+        menuService.deleteMenuItem(id);
+        return "redirect:/viewMenu"; // Redirect to view menu after deletion
+    }
+
     @PostMapping("/saveMenuChanges")
     public String saveMenuChanges() {
         menuService.saveMenuChanges();
