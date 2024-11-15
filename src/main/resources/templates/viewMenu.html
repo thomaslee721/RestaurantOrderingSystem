@@ -1,13 +1,32 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
     <title>View Menu</title>
 </head>
 <body>
-    <h1>Menu</h1>
-    <p>Dish 1 - $10</p>
-    <p>Dish 2 - $15</p>
-    <p>Dish 3 - $12</p>
+
+<h1>View and Edit Menu Items</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="item : ${menuItems}">
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.description}"></td>
+            <td th:text="${item.price}"></td>
+            <td>
+                <a th:href="@{/editMenu/{id}(id=${item.id})}">Edit</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
 </body>
 </html>

@@ -17,6 +17,8 @@
 ./java/com/example
 ./java/com/example/.DS_Store
 ./java/com/example/RestaurantOrderingSystem
+./java/com/example/RestaurantOrderingSystem/MenuService.java
+./java/com/example/RestaurantOrderingSystem/MenuItem.java
 ./java/com/example/RestaurantOrderingSystem/HomeController.java
 ./java/com/example/RestaurantOrderingSystem/RestaurantOrderingSystemApplication.java
 ./file_structure.txt
