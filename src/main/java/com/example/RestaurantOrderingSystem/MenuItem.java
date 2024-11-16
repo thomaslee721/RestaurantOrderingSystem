@@ -6,11 +6,7 @@ public class MenuItem {
     private String description;
     private double price;
 
-    // Default constructor
-    public MenuItem() {
-    }
-
-    // Other constructors (if any)
+    // Constructor, getters, and setters
     public MenuItem(Long id, String name, String description, double price) {
         this.id = id;
         this.name = name;
@@ -18,7 +14,6 @@ public class MenuItem {
         this.price = price;
     }
 
-    // Getters and setters
     public Long getId() {
         return id;
     }
