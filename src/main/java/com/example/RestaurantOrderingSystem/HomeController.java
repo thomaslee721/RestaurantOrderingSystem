@@ -52,7 +52,7 @@ public class HomeController {
     public String order(@RequestParam("tableNumber") int tableNumber, Model model) {
         model.addAttribute("tableNumber", tableNumber);
         model.addAttribute("menuItems", menuService.getMenuItems()); // Get menu items from MenuService
-        return "order"; // Redirects to order page for customers
+        return "order"; // Thymeleaf template for ordering
     }
 
     @GetMapping("/viewMenu")

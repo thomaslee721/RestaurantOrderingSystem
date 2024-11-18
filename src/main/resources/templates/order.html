@@ -94,23 +94,14 @@
     <!-- Left Panel: Menu Items -->
     <div class="panel">
         <h2>Order Items</h2>
-        <div class="menu-item">
-            <span>Item 1 - $6.30</span>
+        <div th:each="item : ${menuItems}" class="menu-item">
+            <span th:text="${item.name} + ' - $' + ${item.price}"></span>
             <div class="amount-controls">
-                <button onclick="updateAmount('Item1', 'Item 1', 6.30, -1)">-</button>
-                <span id="amount-Item1" class="amount-display">0</span>
-                <button onclick="updateAmount('Item1', 'Item 1', 6.30, 1)">+</button>
+                <button onclick="updateAmount([[${item.id}]], '[[${item.name}]]', [[${item.price}]], -1)">-</button>
+                <span id="amount-[[${item.id}]]" class="amount-display">0</span>
+                <button onclick="updateAmount([[${item.id}]], '[[${item.name}]]', [[${item.price}]], 1)">+</button>
             </div>
         </div>
-        <div class="menu-item">
-            <span>Item 2 - $4.50</span>
-            <div class="amount-controls">
-                <button onclick="updateAmount('Item2', 'Item 2', 4.50, -1)">-</button>
-                <span id="amount-Item2" class="amount-display">0</span>
-                <button onclick="updateAmount('Item2', 'Item 2', 4.50, 1)">+</button>
-            </div>
-        </div>
-        <!-- Add more items similarly -->
     </div>
 
     <!-- Right Panel: Cart and Summary -->

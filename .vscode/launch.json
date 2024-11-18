@@ -3,6 +3,13 @@
     "configurations": [
       {
         "type": "java",
+        "name": "Main",
+        "request": "launch",
+        "mainClass": "com.example.RestaurantOrderingSystem.Main",
+        "projectName": "RestaurantOrderingSystem"
+      },
+      {
+        "type": "java",
         "name": "RestaurantOrderingSystemApplication",
         "request": "launch",
         "mainClass": "com.example.RestaurantOrderingSystem.RestaurantOrderingSystemApplication",
