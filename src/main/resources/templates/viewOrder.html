@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Orders</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+
+<h1>View and Manage Orders</h1>
+
+<!-- Table for Orders -->
+<table>
+    <thead>
+        <tr>
+            <th>Order No.</th>
+            <th>Table No.</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="order : ${orders}">
+            <td th:text="${order.orderNo}"></td>
+            <td th:text="${order.tableNo}"></td>
+            <td th:text="${order.status}"></td>
+            <td>
+                <button th:attr="onclick='updateOrderStatus(' + ${order.orderNo} + ', \'Processing\')'">Process</button>
+                <button th:attr="onclick='updateOrderStatus(' + ${order.orderNo} + ', \'Done\')'">Done</button>
+                <button th:attr="onclick='updateOrderStatus(' + ${order.orderNo} + ', \'Deleted\')'">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<script th:inline="javascript">
+    function updateOrderStatus(orderNo, status) {
+        fetch('/updateOrderStatus?orderNo=' + orderNo + '&status=' + status, {
+            method: 'POST'
+        }).then(response => {
+            if (response.ok) {
+                location.reload();
+            } else {
+                alert('Failed to update order status');
+            }
+        });
+    }
+</script>
+
+<!-- Back Button to Admin Page -->
+<a href="/admin">
+    <button>Back to Admin</button>
+</a>
+
+</body>
+</html>
