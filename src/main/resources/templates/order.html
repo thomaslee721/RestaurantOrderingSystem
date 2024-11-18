@@ -97,9 +97,9 @@
         <div th:each="item : ${menuItems}" class="menu-item">
             <span th:text="${item.name} + ' - $' + ${item.price}"></span>
             <div class="amount-controls">
-                <button onclick="updateAmount([[${item.id}]], '[[${item.name}]]', [[${item.price}]], -1)">-</button>
-                <span id="amount-[[${item.id}]]" class="amount-display">0</span>
-                <button onclick="updateAmount([[${item.id}]], '[[${item.name}]]', [[${item.price}]], 1)">+</button>
+                <button th:attr="onclick='updateAmount(' + ${item.id} + ', \'' + ${item.name} + '\', ' + ${item.price} + ', -1)'">-</button>
+                <span th:attr="id='amount-' + ${item.id}" class="amount-display">0</span>
+                <button th:attr="onclick='updateAmount(' + ${item.id} + ', \'' + ${item.name} + '\', ' + ${item.price} + ', 1)'">+</button>
             </div>
         </div>
     </div>
